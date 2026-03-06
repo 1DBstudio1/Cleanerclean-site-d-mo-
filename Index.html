@@ -1,0 +1,783 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>CleanerClean — Entreprise de Nettoyage Professionnel</title>
+<link href="https://fonts.googleapis.com/css2?family=Playfair+Display:wght@400;700;900&family=DM+Sans:wght@300;400;500;600&display=swap" rel="stylesheet">
+<style>
+  :root {
+    --blue-deep: #0A1628;
+    --blue-mid: #1B3A6B;
+    --blue-bright: #2D6BE4;
+    --blue-light: #5B9BF5;
+    --pearl: #F8FAFF;
+    --pearl-2: #EDF2FF;
+    --white: #FFFFFF;
+    --text-dark: #0A1628;
+    --text-mid: #4A5568;
+    --text-light: #8899BB;
+    --gold: #C8A96E;
+  }
+
+  * { margin: 0; padding: 0; box-sizing: border-box; }
+
+  html { scroll-behavior: smooth; }
+
+  body {
+    font-family: 'DM Sans', sans-serif;
+    background: var(--pearl);
+    color: var(--text-dark);
+    overflow-x: hidden;
+  }
+
+  /* NAV */
+  nav {
+    position: fixed; top: 0; width: 100%; z-index: 100;
+    padding: 20px 60px;
+    display: flex; justify-content: space-between; align-items: center;
+    background: rgba(248,250,255,0.92);
+    backdrop-filter: blur(20px);
+    border-bottom: 1px solid rgba(45,107,228,0.1);
+    transition: all 0.3s;
+  }
+
+  .logo {
+    font-family: 'Playfair Display', serif;
+    font-size: 26px; font-weight: 900;
+    color: var(--blue-deep);
+    letter-spacing: -0.5px;
+  }
+
+  .logo span { color: var(--blue-bright); }
+
+  nav ul { list-style: none; display: flex; gap: 36px; }
+  nav ul li a {
+    text-decoration: none; color: var(--text-mid);
+    font-size: 15px; font-weight: 500;
+    transition: color 0.2s;
+  }
+  nav ul li a:hover { color: var(--blue-bright); }
+
+  .nav-cta {
+    background: var(--blue-bright);
+    color: white !important;
+    padding: 10px 24px;
+    border-radius: 50px;
+    font-weight: 600 !important;
+    transition: all 0.2s !important;
+  }
+  .nav-cta:hover { background: var(--blue-mid) !important; transform: translateY(-1px); }
+
+  /* HERO */
+  .hero {
+    min-height: 100vh;
+    display: flex; align-items: center;
+    padding: 120px 60px 80px;
+    position: relative;
+    overflow: hidden;
+  }
+
+  .hero-bg {
+    position: absolute; inset: 0; z-index: 0;
+    background: 
+      radial-gradient(ellipse 80% 60% at 70% 50%, rgba(45,107,228,0.08) 0%, transparent 70%),
+      radial-gradient(ellipse 40% 40% at 90% 20%, rgba(91,155,245,0.12) 0%, transparent 60%),
+      linear-gradient(160deg, var(--pearl) 0%, var(--pearl-2) 100%);
+  }
+
+  .hero-circles {
+    position: absolute; right: -100px; top: 50%; transform: translateY(-50%);
+    width: 700px; height: 700px; z-index: 0;
+  }
+
+  .circle {
+    position: absolute; border-radius: 50%;
+    border: 1px solid rgba(45,107,228,0.12);
+    animation: rotate 20s linear infinite;
+  }
+
+  .circle-1 { width: 600px; height: 600px; top: 50px; left: 50px; }
+  .circle-2 { width: 450px; height: 450px; top: 125px; left: 125px; animation-duration: 15s; animation-direction: reverse; border-color: rgba(45,107,228,0.18); }
+  .circle-3 { width: 300px; height: 300px; top: 200px; left: 200px; animation-duration: 10s; border-color: rgba(45,107,228,0.25); }
+
+  .circle-dot {
+    position: absolute; width: 8px; height: 8px;
+    background: var(--blue-bright); border-radius: 50%;
+    top: -4px; left: 50%; transform: translateX(-50%);
+  }
+
+  @keyframes rotate { from { transform: rotate(0deg); } to { transform: rotate(360deg); } }
+
+  .hero-content {
+    position: relative; z-index: 1;
+    max-width: 620px;
+  }
+
+  .hero-badge {
+    display: inline-flex; align-items: center; gap: 8px;
+    background: rgba(45,107,228,0.08);
+    border: 1px solid rgba(45,107,228,0.2);
+    padding: 8px 18px; border-radius: 50px;
+    font-size: 13px; font-weight: 600;
+    color: var(--blue-bright);
+    margin-bottom: 32px;
+    animation: fadeUp 0.6s ease both;
+  }
+
+  .hero-badge::before {
+    content: ''; width: 6px; height: 6px;
+    background: var(--blue-bright); border-radius: 50%;
+    animation: pulse 2s ease infinite;
+  }
+
+  @keyframes pulse { 0%,100% { opacity: 1; } 50% { opacity: 0.3; } }
+
+  h1 {
+    font-family: 'Playfair Display', serif;
+    font-size: 64px; font-weight: 900;
+    line-height: 1.05;
+    color: var(--blue-deep);
+    margin-bottom: 24px;
+    animation: fadeUp 0.6s 0.1s ease both;
+  }
+
+  h1 em {
+    font-style: italic;
+    color: var(--blue-bright);
+  }
+
+  .hero-sub {
+    font-size: 18px; line-height: 1.7;
+    color: var(--text-mid); font-weight: 300;
+    margin-bottom: 48px;
+    max-width: 500px;
+    animation: fadeUp 0.6s 0.2s ease both;
+  }
+
+  .hero-actions {
+    display: flex; gap: 16px; align-items: center;
+    animation: fadeUp 0.6s 0.3s ease both;
+  }
+
+  .btn-primary {
+    background: var(--blue-deep);
+    color: white;
+    padding: 16px 36px;
+    border-radius: 50px;
+    text-decoration: none;
+    font-weight: 600; font-size: 16px;
+    transition: all 0.3s;
+    box-shadow: 0 8px 32px rgba(10,22,40,0.2);
+  }
+  .btn-primary:hover { background: var(--blue-bright); transform: translateY(-2px); box-shadow: 0 12px 40px rgba(45,107,228,0.3); }
+
+  .btn-secondary {
+    color: var(--blue-deep); font-weight: 600; font-size: 16px;
+    text-decoration: none;
+    display: flex; align-items: center; gap: 8px;
+    transition: gap 0.2s;
+  }
+  .btn-secondary:hover { gap: 14px; }
+  .btn-secondary::after { content: '→'; }
+
+  .hero-stats {
+    display: flex; gap: 48px; margin-top: 64px;
+    animation: fadeUp 0.6s 0.4s ease both;
+    padding-top: 48px;
+    border-top: 1px solid rgba(45,107,228,0.1);
+  }
+
+  .stat-item { }
+  .stat-num {
+    font-family: 'Playfair Display', serif;
+    font-size: 36px; font-weight: 900;
+    color: var(--blue-deep);
+  }
+  .stat-num span { color: var(--blue-bright); }
+  .stat-label { font-size: 13px; color: var(--text-light); font-weight: 500; margin-top: 4px; }
+
+  @keyframes fadeUp { from { opacity: 0; transform: translateY(24px); } to { opacity: 1; transform: translateY(0); } }
+
+  /* SERVICES */
+  .services {
+    padding: 120px 60px;
+    background: white;
+  }
+
+  .section-label {
+    font-size: 12px; font-weight: 700; letter-spacing: 3px;
+    color: var(--blue-bright); text-transform: uppercase;
+    margin-bottom: 16px;
+  }
+
+  .section-title {
+    font-family: 'Playfair Display', serif;
+    font-size: 44px; font-weight: 900;
+    color: var(--blue-deep);
+    margin-bottom: 16px;
+    line-height: 1.1;
+  }
+
+  .section-sub {
+    font-size: 17px; color: var(--text-mid); font-weight: 300;
+    max-width: 500px; line-height: 1.7;
+    margin-bottom: 64px;
+  }
+
+  .services-grid {
+    display: grid; grid-template-columns: repeat(3, 1fr); gap: 24px;
+  }
+
+  .service-card {
+    background: var(--pearl);
+    border: 1px solid rgba(45,107,228,0.08);
+    border-radius: 20px;
+    padding: 40px 36px;
+    transition: all 0.3s;
+    position: relative;
+    overflow: hidden;
+  }
+
+  .service-card::before {
+    content: '';
+    position: absolute; top: 0; left: 0; right: 0; height: 3px;
+    background: linear-gradient(90deg, var(--blue-bright), var(--blue-light));
+    transform: scaleX(0); transform-origin: left;
+    transition: transform 0.3s;
+  }
+
+  .service-card:hover { transform: translateY(-6px); box-shadow: 0 20px 60px rgba(45,107,228,0.12); border-color: rgba(45,107,228,0.2); }
+  .service-card:hover::before { transform: scaleX(1); }
+
+  .service-icon {
+    width: 52px; height: 52px;
+    background: linear-gradient(135deg, var(--blue-bright), var(--blue-mid));
+    border-radius: 14px;
+    display: flex; align-items: center; justify-content: center;
+    font-size: 22px;
+    margin-bottom: 24px;
+  }
+
+  .service-card h3 {
+    font-family: 'Playfair Display', serif;
+    font-size: 22px; font-weight: 700;
+    color: var(--blue-deep);
+    margin-bottom: 12px;
+  }
+
+  .service-card p {
+    font-size: 15px; line-height: 1.7;
+    color: var(--text-mid); font-weight: 300;
+  }
+
+  /* POURQUOI NOUS */
+  .why {
+    padding: 120px 60px;
+    background: var(--blue-deep);
+    position: relative; overflow: hidden;
+  }
+
+  .why-bg {
+    position: absolute; inset: 0;
+    background: radial-gradient(ellipse 60% 80% at 90% 50%, rgba(45,107,228,0.15) 0%, transparent 70%);
+  }
+
+  .why .section-label { color: var(--blue-light); }
+  .why .section-title { color: white; }
+  .why .section-sub { color: rgba(255,255,255,0.6); }
+
+  .why-grid {
+    display: grid; grid-template-columns: repeat(2, 1fr); gap: 24px;
+    position: relative; z-index: 1;
+  }
+
+  .why-item {
+    background: rgba(255,255,255,0.05);
+    border: 1px solid rgba(255,255,255,0.1);
+    border-radius: 16px;
+    padding: 36px;
+    transition: all 0.3s;
+  }
+
+  .why-item:hover { background: rgba(255,255,255,0.08); border-color: rgba(45,107,228,0.4); }
+
+  .why-num {
+    font-family: 'Playfair Display', serif;
+    font-size: 48px; font-weight: 900;
+    color: rgba(45,107,228,0.3);
+    line-height: 1;
+    margin-bottom: 16px;
+  }
+
+  .why-item h3 {
+    font-size: 20px; font-weight: 600;
+    color: white; margin-bottom: 10px;
+  }
+
+  .why-item p {
+    font-size: 15px; color: rgba(255,255,255,0.55);
+    line-height: 1.7; font-weight: 300;
+  }
+
+  /* TARIFS */
+  .tarifs {
+    padding: 120px 60px;
+    background: white;
+  }
+
+  .tarifs-grid {
+    display: grid; grid-template-columns: repeat(3, 1fr); gap: 24px;
+    margin-top: 64px;
+  }
+
+  .tarif-card {
+    border: 1px solid rgba(45,107,228,0.12);
+    border-radius: 20px;
+    padding: 44px 36px;
+    text-align: center;
+    transition: all 0.3s;
+    position: relative;
+  }
+
+  .tarif-card.featured {
+    background: var(--blue-deep);
+    border-color: var(--blue-deep);
+    transform: scale(1.04);
+  }
+
+  .tarif-card:not(.featured):hover { transform: translateY(-4px); box-shadow: 0 16px 48px rgba(45,107,228,0.1); }
+
+  .tarif-badge {
+    position: absolute; top: -14px; left: 50%; transform: translateX(-50%);
+    background: var(--blue-bright);
+    color: white; font-size: 12px; font-weight: 700;
+    padding: 6px 18px; border-radius: 50px;
+    letter-spacing: 1px; text-transform: uppercase;
+    white-space: nowrap;
+  }
+
+  .tarif-name {
+    font-family: 'Playfair Display', serif;
+    font-size: 22px; font-weight: 700;
+    color: var(--blue-deep); margin-bottom: 8px;
+  }
+
+  .tarif-card.featured .tarif-name { color: white; }
+
+  .tarif-desc {
+    font-size: 14px; color: var(--text-light);
+    margin-bottom: 32px;
+  }
+
+  .tarif-card.featured .tarif-desc { color: rgba(255,255,255,0.5); }
+
+  .tarif-price {
+    font-family: 'Playfair Display', serif;
+    font-size: 52px; font-weight: 900;
+    color: var(--blue-deep); line-height: 1;
+    margin-bottom: 8px;
+  }
+
+  .tarif-card.featured .tarif-price { color: white; }
+
+  .tarif-price span { font-size: 20px; font-weight: 400; }
+
+  .tarif-unit {
+    font-size: 14px; color: var(--text-light);
+    margin-bottom: 36px;
+  }
+
+  .tarif-card.featured .tarif-unit { color: rgba(255,255,255,0.5); }
+
+  .tarif-features {
+    list-style: none; margin-bottom: 36px; text-align: left;
+  }
+
+  .tarif-features li {
+    padding: 10px 0;
+    border-bottom: 1px solid rgba(45,107,228,0.06);
+    font-size: 15px; color: var(--text-mid);
+    display: flex; align-items: center; gap: 10px;
+  }
+
+  .tarif-card.featured .tarif-features li {
+    color: rgba(255,255,255,0.7);
+    border-color: rgba(255,255,255,0.08);
+  }
+
+  .tarif-features li::before {
+    content: '✓';
+    color: var(--blue-bright); font-weight: 700; flex-shrink: 0;
+  }
+
+  .tarif-card.featured .tarif-features li::before { color: var(--blue-light); }
+
+  .btn-tarif {
+    display: block; width: 100%;
+    padding: 14px;
+    border-radius: 50px;
+    font-weight: 600; font-size: 15px;
+    text-decoration: none; text-align: center;
+    transition: all 0.3s;
+    border: none; cursor: pointer;
+  }
+
+  .btn-tarif-outline {
+    background: transparent;
+    border: 2px solid rgba(45,107,228,0.2);
+    color: var(--blue-deep);
+  }
+
+  .btn-tarif-outline:hover { border-color: var(--blue-bright); color: var(--blue-bright); }
+
+  .btn-tarif-white {
+    background: white; color: var(--blue-deep);
+  }
+
+  .btn-tarif-white:hover { background: var(--pearl); }
+
+  /* CONTACT */
+  .contact {
+    padding: 120px 60px;
+    background: linear-gradient(135deg, var(--pearl) 0%, var(--pearl-2) 100%);
+  }
+
+  .contact-inner {
+    display: grid; grid-template-columns: 1fr 1fr; gap: 80px;
+    align-items: center;
+  }
+
+  .contact-info h2 {
+    font-family: 'Playfair Display', serif;
+    font-size: 44px; font-weight: 900;
+    color: var(--blue-deep); margin-bottom: 20px;
+    line-height: 1.1;
+  }
+
+  .contact-info p {
+    font-size: 17px; color: var(--text-mid);
+    line-height: 1.7; font-weight: 300; margin-bottom: 40px;
+  }
+
+  .contact-detail {
+    display: flex; align-items: center; gap: 16px;
+    margin-bottom: 20px;
+  }
+
+  .contact-icon {
+    width: 44px; height: 44px;
+    background: var(--blue-deep); border-radius: 12px;
+    display: flex; align-items: center; justify-content: center;
+    font-size: 18px; flex-shrink: 0;
+  }
+
+  .contact-detail-text strong {
+    display: block; font-size: 14px; font-weight: 600;
+    color: var(--blue-deep);
+  }
+
+  .contact-detail-text span {
+    font-size: 15px; color: var(--text-mid);
+  }
+
+  .contact-buttons {
+    display: flex; flex-direction: column; gap: 20px;
+    justify-content: center;
+  }
+
+  .contact-btn {
+    display: flex; align-items: center; gap: 20px;
+    background: white;
+    border: 1.5px solid rgba(45,107,228,0.12);
+    border-radius: 20px;
+    padding: 28px 36px;
+    text-decoration: none;
+    transition: all 0.3s;
+    box-shadow: 0 4px 20px rgba(45,107,228,0.06);
+  }
+
+  .contact-btn:hover { transform: translateY(-3px); box-shadow: 0 12px 40px rgba(45,107,228,0.14); border-color: var(--blue-bright); }
+
+  .contact-btn-icon {
+    width: 56px; height: 56px; flex-shrink: 0;
+    background: var(--blue-deep);
+    border-radius: 16px;
+    display: flex; align-items: center; justify-content: center;
+    font-size: 24px;
+  }
+
+  .contact-btn-text strong {
+    display: block; font-size: 18px; font-weight: 700;
+    color: var(--blue-deep); margin-bottom: 4px;
+  }
+
+  .contact-btn-text span {
+    font-size: 15px; color: var(--text-light);
+  }
+
+  /* FOOTER */
+  footer {
+    background: var(--blue-deep);
+    padding: 60px;
+    display: flex; justify-content: space-between; align-items: center;
+  }
+
+  .footer-logo {
+    font-family: 'Playfair Display', serif;
+    font-size: 24px; font-weight: 900; color: white;
+  }
+
+  .footer-logo span { color: var(--blue-light); }
+
+  .footer-text { font-size: 14px; color: rgba(255,255,255,0.4); }
+
+  .footer-links { display: flex; gap: 24px; }
+  .footer-links a { color: rgba(255,255,255,0.5); text-decoration: none; font-size: 14px; transition: color 0.2s; }
+  .footer-links a:hover { color: white; }
+
+  /* RESPONSIVE */
+  @media (max-width: 900px) {
+    nav { padding: 16px 24px; }
+    nav ul { display: none; }
+    .hero { padding: 100px 24px 60px; }
+    h1 { font-size: 40px; }
+    .hero-circles { display: none; }
+    .services { padding: 80px 24px; }
+    .services-grid { grid-template-columns: 1fr; }
+    .why { padding: 80px 24px; }
+    .why-grid { grid-template-columns: 1fr; }
+    .tarifs { padding: 80px 24px; }
+    .tarifs-grid { grid-template-columns: 1fr; }
+    .tarif-card.featured { transform: scale(1); }
+    .contact { padding: 80px 24px; }
+    .contact-inner { grid-template-columns: 1fr; gap: 40px; }
+    footer { padding: 40px 24px; flex-direction: column; gap: 20px; text-align: center; }
+    .hero-stats { gap: 24px; }
+  }
+</style>
+</head>
+<body>
+
+<!-- NAV -->
+<nav>
+  <div class="logo">Cleaner<span>Clean</span></div>
+  <ul>
+    <li><a href="#services">Services</a></li>
+    <li><a href="#pourquoi">Pourquoi nous</a></li>
+    <li><a href="#tarifs">Tarifs</a></li>
+    <li><a href="#contact" class="nav-cta">Devis gratuit</a></li>
+  </ul>
+</nav>
+
+<!-- HERO -->
+<section class="hero">
+  <div class="hero-bg"></div>
+  <div class="hero-circles">
+    <div class="circle circle-1"><div class="circle-dot"></div></div>
+    <div class="circle circle-2"><div class="circle-dot"></div></div>
+    <div class="circle circle-3"><div class="circle-dot"></div></div>
+  </div>
+  <div class="hero-content">
+    <div class="hero-badge">✦ Nettoyage professionnel haut de gamme</div>
+    <h1>Un espace <em>impeccable</em>, une image irréprochable.</h1>
+    <p class="hero-sub">CleanerClean intervient dans vos locaux professionnels et habitations avec précision, discrétion et un souci du détail qui fait la différence.</p>
+    <div class="hero-actions">
+      <a href="#contact" class="btn-primary">Demander un devis</a>
+      <a href="#services" class="btn-secondary">Nos services</a>
+    </div>
+    <div class="hero-stats">
+      <div class="stat-item">
+        <div class="stat-num">+<span>500</span></div>
+        <div class="stat-label">Clients satisfaits</div>
+      </div>
+      <div class="stat-item">
+        <div class="stat-num"><span>8</span> ans</div>
+        <div class="stat-label">D'expérience</div>
+      </div>
+      <div class="stat-item">
+        <div class="stat-num"><span>98</span>%</div>
+        <div class="stat-label">Taux de satisfaction</div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- SERVICES -->
+<section class="services" id="services">
+  <div class="section-label">Nos prestations</div>
+  <div class="section-title">Ce que nous faisons,<br>nous le faisons bien.</div>
+  <div class="section-sub">Des interventions adaptées à vos besoins, réalisées par des professionnels formés et équipés.</div>
+  <div class="services-grid">
+    <div class="service-card">
+      <div class="service-icon">🏢</div>
+      <h3>Locaux professionnels</h3>
+      <p>Bureaux, espaces de travail, salles de réunion — nettoyage régulier ou ponctuel selon votre planning.</p>
+    </div>
+    <div class="service-card">
+      <div class="service-icon">🏠</div>
+      <h3>Habitations</h3>
+      <p>Appartements, maisons, parties communes — votre intérieur mérite une attention particulière.</p>
+    </div>
+    <div class="service-card">
+      <div class="service-icon">✨</div>
+      <h3>Nettoyage de fin de chantier</h3>
+      <p>Rénovation, travaux, emménagement — on repart de zéro pour vous livrer un espace prêt à vivre.</p>
+    </div>
+    <div class="service-card">
+      <div class="service-icon">🛒</div>
+      <h3>Commerce & boutiques</h3>
+      <p>Vitrine, sol, rayonnages — un commerce propre inspire confiance et fidélise vos clients.</p>
+    </div>
+    <div class="service-card">
+      <div class="service-icon">🪟</div>
+      <h3>Vitrerie & façades</h3>
+      <p>Nettoyage de vitres, baies vitrées, devantures — brillance garantie, vue dégagée.</p>
+    </div>
+    <div class="service-card">
+      <div class="service-icon">🚨</div>
+      <h3>Intervention d'urgence</h3>
+      <p>Sinistre, dégât des eaux, événement — on intervient rapidement pour remettre les choses en ordre.</p>
+    </div>
+  </div>
+</section>
+
+<!-- POURQUOI -->
+<section class="why" id="pourquoi">
+  <div class="why-bg"></div>
+  <div class="section-label">Notre engagement</div>
+  <div class="section-title" style="color:white">Pourquoi choisir<br>CleanerClean ?</div>
+  <div class="section-sub" style="color:rgba(255,255,255,0.55)">Parce qu'un prestataire de confiance, ça ne se trouve pas au hasard.</div>
+  <div class="why-grid">
+    <div class="why-item">
+      <div class="why-num">01</div>
+      <h3>Équipe formée & assurée</h3>
+      <p>Chaque intervenant est formé à nos protocoles et couvert par notre assurance responsabilité civile professionnelle.</p>
+    </div>
+    <div class="why-item">
+      <div class="why-num">02</div>
+      <h3>Produits certifiés</h3>
+      <p>Nous utilisons exclusivement des produits professionnels certifiés, respectueux de l'environnement et de vos surfaces.</p>
+    </div>
+    <div class="why-item">
+      <div class="why-num">03</div>
+      <h3>Ponctualité & discrétion</h3>
+      <p>On arrive à l'heure, on travaille sans gêner, on repart sans laisser de trace — sauf la propreté.</p>
+    </div>
+    <div class="why-item">
+      <div class="why-num">04</div>
+      <h3>Devis sous 24h</h3>
+      <p>Vous contactez, on répond. Devis personnalisé et sans engagement sous 24 heures, adapté à votre situation.</p>
+    </div>
+  </div>
+</section>
+
+<!-- TARIFS -->
+<section class="tarifs" id="tarifs">
+  <div class="section-label">Nos formules</div>
+  <div class="section-title">Des tarifs clairs,<br>sans mauvaise surprise.</div>
+  <div class="tarifs-grid">
+    <div class="tarif-card">
+      <div class="tarif-name">Essentiel</div>
+      <div class="tarif-desc">Particuliers & petits espaces</div>
+      <div class="tarif-price">25<span>€</span></div>
+      <div class="tarif-unit">/ heure · minimum 2h</div>
+      <ul class="tarif-features">
+        <li>Nettoyage standard</li>
+        <li>Sols, surfaces, sanitaires</li>
+        <li>Produits fournis</li>
+        <li>Intervention ponctuelle</li>
+      </ul>
+      <a href="#contact" class="btn-tarif btn-tarif-outline">Demander un devis</a>
+    </div>
+    <div class="tarif-card featured">
+      <div class="tarif-badge">Le plus choisi</div>
+      <div class="tarif-name">Pro</div>
+      <div class="tarif-desc">Entreprises & locaux commerciaux</div>
+      <div class="tarif-price">Sur<span> devis</span></div>
+      <div class="tarif-unit">Contrat mensuel personnalisé</div>
+      <ul class="tarif-features">
+        <li>Passage régulier (fréquence au choix)</li>
+        <li>Équipe dédiée à votre site</li>
+        <li>Rapport d'intervention mensuel</li>
+        <li>Réactivité 7j/7</li>
+        <li>Tarif préférentiel engagement</li>
+      </ul>
+      <a href="#contact" class="btn-tarif btn-tarif-white">Obtenir mon devis</a>
+    </div>
+    <div class="tarif-card">
+      <div class="tarif-name">Ponctuel+</div>
+      <div class="tarif-desc">Chantier, fin de bail, événement</div>
+      <div class="tarif-price">Sur<span> devis</span></div>
+      <div class="tarif-unit">Intervention unique complète</div>
+      <ul class="tarif-features">
+        <li>Nettoyage de fond complet</li>
+        <li>Fin de chantier / déménagement</li>
+        <li>Vitrerie incluse</li>
+        <li>Résultat garanti</li>
+      </ul>
+      <a href="#contact" class="btn-tarif btn-tarif-outline">Demander un devis</a>
+    </div>
+  </div>
+</section>
+
+<!-- CONTACT -->
+<section class="contact" id="contact">
+  <div class="contact-inner">
+    <div class="contact-info">
+      <div class="section-label">Contact</div>
+      <h2>Parlons de votre projet.</h2>
+      <p>Remplissez le formulaire ou appelez-nous directement. Réponse garantie sous 24h, devis gratuit et sans engagement.</p>
+      <div class="contact-detail">
+        <div class="contact-icon">📞</div>
+        <div class="contact-detail-text">
+          <strong>Téléphone</strong>
+          <span>06 XX XX XX XX</span>
+        </div>
+      </div>
+      <div class="contact-detail">
+        <div class="contact-icon">✉️</div>
+        <div class="contact-detail-text">
+          <strong>Email</strong>
+          <span><a href="/cdn-cgi/l/email-protection" class="__cf_email__" data-cfemail="96f5f9f8e2f7f5e2d6f5faf3f7f8f3e4f5faf3f7f8b8f0e4">[email&#160;protected]</a></span>
+        </div>
+      </div>
+      <div class="contact-detail">
+        <div class="contact-icon">📍</div>
+        <div class="contact-detail-text">
+          <strong>Zone d'intervention</strong>
+          <span>Gap et Hautes-Alpes (05)</span>
+        </div>
+      </div>
+    </div>
+    <div class="contact-buttons">
+      <a href="tel:0600000000" class="contact-btn">
+        <div class="contact-btn-icon">📞</div>
+        <div class="contact-btn-text">
+          <strong>Appeler directement</strong>
+          <span>06 XX XX XX XX · Disponible 7j/7</span>
+        </div>
+      </a>
+      <a href="sms:0600000000" class="contact-btn">
+        <div class="contact-btn-icon">💬</div>
+        <div class="contact-btn-text">
+          <strong>Envoyer un SMS</strong>
+          <span>Réponse sous 1h garantie</span>
+        </div>
+      </a>
+      <a href="mailto:contact@cleanerclean.fr" class="contact-btn">
+        <div class="contact-btn-icon">✉️</div>
+        <div class="contact-btn-text">
+          <strong>Envoyer un email</strong>
+          <span>contact@cleanerclean.fr</span>
+        </div>
+      </a>
+    </div>
+  </div>
+</section>
+
+<!-- FOOTER -->
+<footer>
+  <div class="footer-logo">Cleaner<span>Clean</span></div>
+  <div class="footer-text">© 2026 CleanerClean · Tous droits réservés</div>
+  <div class="footer-links"
